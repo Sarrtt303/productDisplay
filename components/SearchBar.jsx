@@ -2,32 +2,39 @@
 import { useState } from 'react';
 
 const SearchBar = ({ products, setFilteredProducts }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');  
 
-  const handleSearch = () => {
-    const query = searchQuery.toLowerCase();
+  const handleSearch = () => {                      //Lagic to handle search functionality
+    const query = searchQuery.toLowerCase();        //turns the query entered by the user to lowercase
 
-    const filteredProducts = products.filter(
+    const filteredProducts = products.filter(        //filter method is applied on the products object
       (product) =>
-        product.title.toLowerCase().includes(query) ||
+        product.title.toLowerCase().includes(query) ||      //filter the products to find the title and description fields in the products object, all the field are changed to lowercase to ensure that there are no case errors while searching
         product.description.toLowerCase().includes(query)
     );
 
-    setFilteredProducts(filteredProducts);
+    setFilteredProducts(filteredProducts);   //filtered products recieved are saved in the setFilteredProducts variable which is later called to display the filtered products
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event) => {    // this ensure that when a key is pressed the characters are displayed in the search box
     setSearchQuery(event.target.value);
   };
+  const handleKeyDown = (event) => {   //Searching is done when Enter key is pressed
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
 
   return (
-    <div className="mb-4 flex">
+    <div className="mb-4 flex w-full">
       <input
         type="text"
         placeholder="Search products..."
         value={searchQuery}
         onChange={handleInputChange}
-        className="w-full px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        onKeyDown={handleKeyDown}
+        className="w-full px-4 py-2 border text-black border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <button
         onClick={handleSearch}

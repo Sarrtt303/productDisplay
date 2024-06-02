@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       }
       break;
     default:
-      res.setHeader('Allow', ['GET']);
-      res.status(405).end(`Method ${method} Not Allowed`);
+      res.setHeader('Allow', ['GET']);                      //This makes it such that only GET methods can be used in the app
+      res.status(405).end(`Method ${method} Not Allowed`);  //Disallows other methods to be used
   }
 }
