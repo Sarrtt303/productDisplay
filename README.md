@@ -23,3 +23,5 @@ Example Mock API used: https://fakestoreapi.com/products
 
 How to run: open the directory in terminal and type 'npm run dev' in it, make sure to add your IP address in the mongoDb database or the backend will not work, no products will be displayed.
 
+View the deployed page: https://product-display-alpha.vercel.app/
+
